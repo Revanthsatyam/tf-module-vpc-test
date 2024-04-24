@@ -16,3 +16,12 @@ resource "aws_subnet" "main" {
     Name = each.key
   }
 }
+
+resource "aws_route_table" "example" {
+  for_each = var.subnets
+  vpc_id = aws_vpc.main.id
+
+  tags = {
+    Name = each.key
+  }
+}
